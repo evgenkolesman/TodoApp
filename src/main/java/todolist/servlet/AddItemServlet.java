@@ -16,7 +16,7 @@ public class AddItemServlet extends HttpServlet {
     Logger logger = Logger.getLogger(AddItemServlet.class);
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         StoreData store = new StoreData();
         resp.setContentType("text/plain");
         resp.setCharacterEncoding("UTF-8");

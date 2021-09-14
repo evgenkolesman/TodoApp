@@ -12,11 +12,11 @@ import java.io.IOException;
 public class UpdateServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         StoreData store = new StoreData();
         resp.setContentType("text/plain");
         resp.setCharacterEncoding("UTF-8");
         String id = req.getParameter("id");
-        store.replace(Integer.valueOf(id), store.findById(Integer.valueOf(id)));
+        store.replace(Integer.valueOf(id));
     }
 }

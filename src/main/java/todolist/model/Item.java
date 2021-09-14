@@ -1,7 +1,5 @@
 package todolist.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
@@ -10,17 +8,17 @@ import java.util.Objects;
 @Table(name = "items")
 public class Item {
 
-    @JsonProperty
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @JsonProperty
+    @Column(name = "description")
     private String description;
 
+    @Column(name = "created")
     private Timestamp created;
 
-    @JsonProperty
+    @Column(name = "done")
     private Boolean done;
 
     public Item(String description) {
@@ -69,7 +67,7 @@ public class Item {
         if (this == o) return true;
         if (!(o instanceof Item)) return false;
         Item item = (Item) o;
-        return Objects.equals(id, item.id) && Objects.equals(description, item.description) && Objects.equals(created, item.created) && Objects.equals(done, item.done);
+        return Objects.equals(id, item.id);
     }
 
     @Override
