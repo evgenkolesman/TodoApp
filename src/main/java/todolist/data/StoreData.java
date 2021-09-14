@@ -32,7 +32,7 @@ public class StoreData {
                     new FileReader("/home/evgenios/IdeaProjects/TodoApp/src/main/resources/hibernate.cfg.xml")
             )) {
                 cfg.load(io);
-                //Class.forName(cfg.getProperty("hibernate.connection.driver_class"));
+                Class.forName(cfg.getProperty("hibernate.connection.driver_class"));
             } catch (Exception e) {
                 logger.error(e.getMessage(), e);
             }
@@ -65,8 +65,9 @@ public class StoreData {
             return item;
         }
 
-        public boolean replace(Integer id) {
+        public boolean update(Integer id, boolean done) {
             Item item = new StoreData().findById(id);
+            item.setDone(done);
             this.wrapper(session -> session.merge(item));
             return this.wrapper(session -> session.merge(item)) != null;
         }
@@ -81,7 +82,7 @@ public class StoreData {
         }
 
         public List<Item> findAll() {
-            return this.wrapper(session -> session.createQuery("from Item").list());
+            return this.wrapper(session -> session.createQuery("from Item ").list());
         }
 
         public List<Item> findByDescription(final String description) {
@@ -105,8 +106,8 @@ public class StoreData {
             StandardServiceRegistryBuilder.destroy(registry);
         }
 
-//        public static void main(String[] args) throws Exception {
-//            StoreData tracker = new StoreData();
+        public static void main(String[] args) throws Exception {
+            StoreData tracker = new StoreData();
 //
 
 //        for (Item i : list1) {
@@ -115,10 +116,9 @@ public class StoreData {
 
 //           IntStream.range(9, 11).forEach(tracker :: delete);
 //            tracker.findAll().forEach(System.out::println);
-//      System.out.println(tracker.findById(1));
+            System.out.println(tracker.findById(1));
 //        System.out.println(tracker.replace(18, new Item("item3 new")));
 //        tracker.findByName("item1").forEach(System.out::println);
 //        System.out.println(tracker.delete(35));
-
-
+        }
 }

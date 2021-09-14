@@ -13,6 +13,11 @@
         showAll = !showAll;
         buildTable(showAll);
     });
+
+    $('#checkBut').click(function() {
+            showAll = !showAll;
+            buildTable(showAll);
+    })
 });
 
 function validateAndAdd() {
@@ -39,30 +44,47 @@ function buildTable(showAll) {
     $.getJSON("/TodoApp/index").done(function (response) {
         let rows = [];
         $.each(response, function (key, val) {
+            let checkBut = val.done;
             if (showAll === false) {
+
                 if (val.done === false) {
-                    rows.push('<tr><td>' + val.id + '</td><td>' + val.description
-                         + '</td><td>'+ timestampToDate(val.created) +'</td><td>' +
+                    rows.push('<tr>' +
+                        '<td>' + val.id + '</td>' +
+                        '<td>' + val.description
+                        + '</td>' +
+                        '<td>'+ timestampToDate(val.created) +'</td>' +
+                        '<td>' +
                         '<div class="form-check">' +
-                    '<input class="form-check-input" type="checkbox" value="" id="flexSwitchCheckDefault" checked>' +
-                    '</div>' +
-                        '</td></tr>');
+                        '<input class="form-check-input" type="checkbox" value="" id="' + val.id + '">' +
+                        '</div>' +
+                        '</td>' +
+                        '</tr>');
                 }
             } else {
                 if (val.done === false) {
-                    rows.push('<tr><td>' + val.id + '</td><td>' + val.description
-                        + '</td><td>'+ timestampToDate(val.created) +'</td><td>' +
+                    rows.push('<tr>' +
+                        '<td>' + val.id + '</td>' +
+                        '<td>' + val.description
+                        + '</td>' +
+                        '<td>'+ timestampToDate(val.created) +'</td>' +
+                        '<td>' +
                         '<div class="form-check">' +
-                        '<input class="form-check-input" type="checkbox" value="" id="flexSwitchCheckDefault" checked>' +
+                        '<input class="form-check-input" type="checkbox" value="" id="' + val.id + '">' +
                         '</div>' +
-                        '</td></tr>');
+                        '</td>' +
+                        '</tr>');
                 } else {
-                    rows.push('<tr><td>' + val.id + '</td><td>' + val.description
-                        + '</td><td>'+ timestampToDate(val.created) +'</td><td>' +
+                    rows.push('<tr>' +
+                        '<td>' + val.id + '</td>' +
+                        '<td>' + val.description
+                        + '</td>' +
+                        '<td>'+ timestampToDate(val.created) +'</td>' +
+                        '<td>' +
                         '<div class="form-check">' +
-                        '<input class="form-check-input" type="checkbox" value="" id="flexSwitchCheckDefault" checked>' +
+                        '<input class="form-check-input" type="checkbox" value="" id="' + val.id + '" checked>' +
                         '</div>' +
-                        '</td></tr>');
+                        '</td>' +
+                        '</tr>');
                 }
             }
         });
@@ -77,7 +99,7 @@ function buildTable(showAll) {
 }
 
 function update(id, showAll) {
-    $.post("TodoApp/update", {
+    $.post("/TodoApp/update", {
         id: id
     }).done(function (response) {
         buildTable(showAll);
