@@ -1,0 +1,9 @@
+'<div class="form-check">' +
+                        '<input class="form-check-input" type="checkbox" value="" id="' + val.id + '">' + '</div>
+
+
+ full version
+ rows.push('<tr><td>' + val.description + '</td><td>' +
+                         '<div class="form-check">' +
+                         '<input class="form-check-input" type="checkbox" value="" id="' + val.id + '" checked>' +
+                         '</div></td></tr>');

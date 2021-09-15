@@ -28,7 +28,4 @@ public class StoreDataTest {
         sd.delete(item.getId());
         assertNull(sd.findById(item.getId()));
     }
-
-
-
 }
