@@ -21,10 +21,15 @@ public class Item {
     @Column(name = "done")
     private Boolean done;
 
+//    @ManyToOne
+//    @JoinColumn(name = "user_id")
+//    private User user;
+
     public Item(String description) {
         this.description = description;
         this.created = new Timestamp(System.currentTimeMillis());
         this.done = false;
+//        user = new User();
     }
 
     public Item() {
@@ -72,7 +77,7 @@ public class Item {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, description, created, done);
+        return Objects.hash(id);
     }
 
     @Override

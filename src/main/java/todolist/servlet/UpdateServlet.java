@@ -13,11 +13,11 @@ public class UpdateServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        StoreData store = new StoreData();
+        StoreData store = StoreData.instOf();
         resp.setContentType("text/plain");
         resp.setCharacterEncoding("UTF-8");
         String id = req.getParameter("id");
-        Boolean done = Boolean.valueOf(req.getParameter("done"));
+        Boolean done = !Boolean.valueOf(req.getParameter("done"));
         store.update(Integer.valueOf(id), done);
     }
 

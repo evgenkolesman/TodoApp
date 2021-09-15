@@ -12,7 +12,7 @@ public class StoreDataTest {
 
     @Test
     public void updateTest() throws SQLException {
-        StoreData sd = new StoreData();
+        StoreData sd = StoreData.instOf();
         Item item = new Item("desc");
         sd.add(item);
         sd.update(item.getId(), true);
@@ -22,7 +22,7 @@ public class StoreDataTest {
 
     @Test
     public void deleteAndAddTest() throws SQLException {
-        StoreData sd = new StoreData();
+        StoreData sd = StoreData.instOf();
         Item item = new Item("desc");
         sd.add(item);
         sd.delete(item.getId());

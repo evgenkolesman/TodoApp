@@ -17,7 +17,7 @@ public class AddItemServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        StoreData store = new StoreData();
+        StoreData store = StoreData.instOf();
         resp.setContentType("text/plain");
         resp.setCharacterEncoding("UTF-8");
         String description = req.getParameter("description");

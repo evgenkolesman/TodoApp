@@ -1,6 +1,5 @@
 package todolist.data;
 
-import org.hibernate.query.Query;
 import todolist.model.Item;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.log4j.Logger;
@@ -26,7 +25,7 @@ public class StoreData {
             .buildMetadata().buildSessionFactory();
 
 
-    public StoreData() {
+    private StoreData() {
         Properties cfg = new Properties();
         try (BufferedReader io = new BufferedReader(
                 new FileReader("/home/evgenios/IdeaProjects/TodoApp/src/main/resources/hibernate.cfg.xml")
@@ -43,6 +42,10 @@ public class StoreData {
         pool.setMinIdle(5);
         pool.setMaxIdle(10);
         pool.setMaxOpenPreparedStatements(100);
+    }
+
+    public static StoreData instOf() {
+            return new StoreData();
     }
 
     private <T> T wrapper(final Function<Session, T> command) {
