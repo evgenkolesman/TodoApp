@@ -2,6 +2,7 @@ package todolist.data;
 
 import org.junit.Test;
 import todolist.model.Item;
+import todolist.model.User;
 
 import java.sql.SQLException;
 
@@ -13,7 +14,7 @@ public class StoreDataTest {
     @Test
     public void updateTest() throws SQLException {
         StoreData sd = StoreData.instOf();
-        Item item = new Item("desc");
+        Item item = new Item("desc", new User());
         sd.add(item);
         sd.update(item.getId(), true);
         assertThat(sd.findById(item.getId()).getDone(), is(true));
@@ -23,7 +24,7 @@ public class StoreDataTest {
     @Test
     public void deleteAndAddTest() throws SQLException {
         StoreData sd = StoreData.instOf();
-        Item item = new Item("desc");
+        Item item = new Item("desc", new User());
         sd.add(item);
         sd.delete(item.getId());
         assertNull(sd.findById(item.getId()));

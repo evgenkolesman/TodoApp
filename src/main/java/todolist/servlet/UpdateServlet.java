@@ -21,13 +21,4 @@ public class UpdateServlet extends HttpServlet {
         store.update(Integer.valueOf(id), done);
     }
 
-//    @Override
-//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        StoreData store = new StoreData();
-//        resp.setContentType("text/plain");
-//        resp.setCharacterEncoding("UTF-8");
-//        String id = req.getParameter("id");
-//        Boolean done = Boolean.valueOf(req.getParameter("done"));
-//        store.update(Integer.valueOf(id), done);;
-//    }
 }

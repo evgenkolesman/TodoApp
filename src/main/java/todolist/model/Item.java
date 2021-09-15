@@ -25,11 +25,11 @@ public class Item {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Item(String description) {
+    public Item(String description, User user) {
         this.description = description;
         this.created = new Timestamp(System.currentTimeMillis());
         this.done = false;
-        user = new User();
+        this.user = user;
     }
 
     public Item() {
@@ -65,6 +65,14 @@ public class Item {
 
     public void setDone(Boolean done) {
         this.done = done;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

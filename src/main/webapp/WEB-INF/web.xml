@@ -5,6 +5,15 @@
 <web-app>
     <display-name>Archetype Created Web Application</display-name>
 
+    <filter>
+        <filter-name>FilterAuth</filter-name>
+        <filter-class>todolist.filter.FilterAuth</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FilterAuth</filter-name>
+        <url-pattern>*</url-pattern>
+    </filter-mapping>
+    
     <servlet>
         <servlet-name>IndexServlet</servlet-name>
         <servlet-class>todolist.servlet.IndexServlet</servlet-class>
@@ -21,7 +30,6 @@
         <servlet-name>AddItemServlet</servlet-name>
         <url-pattern>/add</url-pattern>
     </servlet-mapping>
-
     <servlet>
         <servlet-name>UpdateServlet</servlet-name>
         <servlet-class>todolist.servlet.UpdateServlet</servlet-class>
@@ -31,4 +39,29 @@
         <url-pattern>/update</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+    <servlet-name>AuthServlet</servlet-name>
+    <servlet-class>todolist.servlet.AuthServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AuthServlet</servlet-name>
+        <url-pattern>/auth.do</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>GreetServlet</servlet-name>
+        <servlet-class>todolist.servlet.GreetServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GreetServlet</servlet-name>
+        <url-pattern>/greet.do</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>RegServlet</servlet-name>
+        <servlet-class>todolist.servlet.RegServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegServlet</servlet-name>
+        <url-pattern>/reg.do</url-pattern>
+    </servlet-mapping>
+    
 </web-app>

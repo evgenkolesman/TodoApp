@@ -3,6 +3,7 @@ package todolist.servlet;
 import todolist.data.StoreData;
 import todolist.model.Item;
 import org.apache.log4j.Logger;
+import todolist.model.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +22,8 @@ public class AddItemServlet extends HttpServlet {
         resp.setContentType("text/plain");
         resp.setCharacterEncoding("UTF-8");
         String description = req.getParameter("description");
-        Item item = new Item(description);
+        User user = (User) req.getSession().getAttribute("user");
+        Item item = new Item(description, user);
         try {
             store.add(item);
         } catch (SQLException e) {
