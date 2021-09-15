@@ -74,12 +74,6 @@ public class StoreData {
                         setParameter("id", id).executeUpdate());
     }
 
-//    public void update(Integer id, Boolean done) {
-//        Item item = new StoreData().findById(id);
-//        item.setDone(done);
-//        this.wrapper(session -> session.merge(item));
-//    }
-
     public void delete(Integer id) {
         this.wrapper(session ->
                 session.createQuery("DELETE Item where id = :id").
