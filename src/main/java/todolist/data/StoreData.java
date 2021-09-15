@@ -31,7 +31,7 @@ public class StoreData {
                 new FileReader("/home/evgenios/IdeaProjects/TodoApp/src/main/resources/hibernate.cfg.xml")
         )) {
             cfg.load(io);
-            Class.forName(cfg.getProperty("hibernate.connection.driver_class"));
+            //Class.forName(cfg.getProperty("hibernate.connection.driver_class"));
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }

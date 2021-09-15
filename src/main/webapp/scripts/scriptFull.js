@@ -42,7 +42,7 @@ function validateAndAdd() {
 }
 
 function addTask() {
-    $.post("/TodoApp/add", {
+    $.post("http://localhost:8080/TodoApp/add", {
         description: $('#description').val()
     }).done(function (response) {
         console.log("Response Data: " + response);
@@ -53,7 +53,7 @@ function addTask() {
 }
 
 function buildTable(showAll) {
-    $.getJSON("/TodoApp/index").done(function (response) {
+    $.getJSON("http://localhost:8080/TodoApp/index").done(function (response) {
         let rows = [];
         $.each(response, function (key, val) {
             let checkBut = val.done;
@@ -62,8 +62,7 @@ function buildTable(showAll) {
                 if (val.done === false) {
                     rows.push('<tr>' +
                         '<td>' + val.id + '</td>' +
-                        '<td>' + val.description +
-                        '</td>' +
+                        '<td>' + val.description + '</td>' +
                         '<td>' + timestampToDate(val.created) + '</td>' +
                         '<td>' +
                         '<div class="form-check">' +

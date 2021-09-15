@@ -1,7 +1,6 @@
 package todolist.servlet;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
 import todolist.data.StoreData;
 import todolist.model.Item;
 
