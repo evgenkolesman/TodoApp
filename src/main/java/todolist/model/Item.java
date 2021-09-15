@@ -21,15 +21,15 @@ public class Item {
     @Column(name = "done")
     private Boolean done;
 
-//    @ManyToOne
-//    @JoinColumn(name = "user_id")
-//    private User user;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Item(String description) {
         this.description = description;
         this.created = new Timestamp(System.currentTimeMillis());
         this.done = false;
-//        user = new User();
+        user = new User();
     }
 
     public Item() {
