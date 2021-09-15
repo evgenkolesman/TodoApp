@@ -6,7 +6,7 @@
         validateAndAdd();
         setTimeout(function () {
             buildTable(showAll);
-        }, 10);
+        }, 100);
     });
 
     $('#flexSwitchCheckDefault').click(function () {

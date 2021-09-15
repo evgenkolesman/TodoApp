@@ -60,52 +60,51 @@ public class StoreData {
         }
     }
 
-        public Item add(Item item) throws SQLException {
+        public void add(Item item) throws SQLException {
             this.wrapper(session -> session.save(item));
-            return item;
         }
 
-        public boolean update(Integer id, boolean done) {
-            Item item = new StoreData().findById(id);
-            item.setDone(done);
-            this.wrapper(session -> session.merge(item));
-            return this.wrapper(session -> session.merge(item)) != null;
+        public void update(Integer id, Boolean done) {
+             this.wrapper(session ->
+                    session.createQuery("UPDATE Item SET done = :done WHERE id = :id").
+                            setParameter("done", done).
+                            setParameter("id", id).executeUpdate());
         }
 
-        public boolean delete(Integer id) {
-            Item item = new StoreData().findById(id);
-            return this.wrapper(session -> {
-                session.delete(item);
-                        return new StoreData().findById(id) == null;
-                    }
-            );
+//    public void update(Integer id, Boolean done) {
+//        Item item = new StoreData().findById(id);
+//        item.setDone(done);
+//        this.wrapper(session -> session.merge(item));
+//    }
+
+        public void delete(Integer id) {
+            this.wrapper(session ->
+                session.createQuery("DELETE Item where id = :id").
+                        setParameter("id", id).
+                        executeUpdate());
         }
 
         public List<Item> findAll() {
-            return this.wrapper(session -> session.createQuery("from Item ").list());
+            return this.wrapper(session -> session.createQuery("FROM Item ORDER BY id ASC").list());
         }
 
         public List<Item> findByDescription(final String description) {
-            return this.wrapper(session -> {
-                    final Query query = session.createQuery("from Item where description = :description");
-                    query.setParameter("description", description);
-                    return query.list();
-            });
+            return this.wrapper(session -> session.createQuery("FROM Item WHERE description = :description ORDER BY id ASC").
+                    setParameter("description", description).
+                    list());
         }
 
         public Item findById(Integer id) {
-            return(Item) this.wrapper(session -> {
-                final Query query = session.createQuery("from Item where id = :id");
-                query.setParameter("id", id);
-                return query.list().get(0);
-            });
-
+            return(Item) this.wrapper(session -> session.createQuery("from Item where id = :id").
+                    setParameter("id", id).
+                    uniqueResult());
         }
 
         public void close() throws Exception {
             StandardServiceRegistryBuilder.destroy(registry);
         }
 
+        //For Testing
         public static void main(String[] args) throws Exception {
             StoreData tracker = new StoreData();
 //
@@ -116,9 +115,8 @@ public class StoreData {
 
 //           IntStream.range(9, 11).forEach(tracker :: delete);
 //            tracker.findAll().forEach(System.out::println);
-            System.out.println(tracker.findById(1));
+//            System.out.println(tracker.findById(2));
 //        System.out.println(tracker.replace(18, new Item("item3 new")));
-//        tracker.findByName("item1").forEach(System.out::println);
 //        System.out.println(tracker.delete(35));
         }
 }
