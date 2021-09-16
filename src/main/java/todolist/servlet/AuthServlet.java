@@ -16,7 +16,7 @@ public class AuthServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        StoreUser store = StoreUser.instOf();
+        StoreUser store = StoreUser.getInstance();
         User user = store.findByEmail(email);
         if (user.getPassword().equals(password)) {
             HttpSession session = req.getSession();

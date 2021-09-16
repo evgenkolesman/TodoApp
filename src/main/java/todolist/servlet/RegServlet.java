@@ -27,7 +27,7 @@ public class RegServlet extends HttpServlet {
         user.setName(username);
         user.setId(id);
         try {
-            StoreUser store = StoreUser.instOf();
+            StoreUser store = StoreUser.getInstance();
             store.add(user);
         } catch (SQLException e) {
             logger.error(e.getMessage(), e);

@@ -44,8 +44,12 @@ public class StoreUser {
         pool.setMaxOpenPreparedStatements(100);
     }
 
-    public static StoreUser instOf() {
-        return new StoreUser();
+    private static class Lazy {
+        static final StoreUser INSTANCE = new StoreUser();
+    }
+
+    public static StoreUser getInstance() {
+        return StoreUser.Lazy.INSTANCE;
     }
 
     private <T> T wrapper(final Function<Session, T> command) {

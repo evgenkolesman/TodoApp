@@ -42,7 +42,7 @@ function validateAndAdd() {
 }
 
 function addTask() {
-    $.post("http://localhost:8080/TodoApp/add", {
+    $.post("/TodoApp/add", {
         description: $('#description').val()
     }).done(function (response) {
         console.log("Response Data: " + response);

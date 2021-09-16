@@ -44,8 +44,12 @@ public class StoreData {
         pool.setMaxOpenPreparedStatements(100);
     }
 
-    public static StoreData instOf() {
-            return new StoreData();
+    private static class Lazy {
+        static final StoreData INSTANCE = new StoreData();
+    }
+
+    public static StoreData getInstance() {
+        return Lazy.INSTANCE;
     }
 
     private <T> T wrapper(final Function<Session, T> command) {

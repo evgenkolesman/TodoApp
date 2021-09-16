@@ -16,7 +16,7 @@ public class IndexServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        StoreData data = StoreData.instOf();
+        StoreData data = StoreData.getInstance();
         List<Item> itemList = data.findAll();
         ObjectMapper mapper = new ObjectMapper();
         String itemsAsString = mapper.writeValueAsString(itemList);
