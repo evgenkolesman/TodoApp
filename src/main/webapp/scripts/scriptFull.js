@@ -7,7 +7,7 @@ $(document).ready(function () {
         validateAndAdd();
         setTimeout(function () {
             buildTable(showAll);
-        }, 50);
+        }, 100);
     });
 
     $('#flexSwitchCheckDefault').click(function () {
@@ -53,13 +53,12 @@ function addTask() {
 }
 
 function buildTable(showAll) {
-    $.getJSON("http://localhost:8080/TodoApp/index").done(function (response) {
+    $.getJSON("/TodoApp/index").done(function (response) {
         let rows = [];
         $.each(response, function (key, val) {
             let checkBut = val.done;
             if (showAll === false) {
-
-                if (val.done === false) {
+                if (val.done == false) {
                     rows.push('<tr>' +
                         '<td>' + val.id + '</td>' +
                         '<td>' + val.description + '</td>' +
@@ -73,7 +72,7 @@ function buildTable(showAll) {
                         '</tr>');
                 }
             } else {
-                if (val.done === false) {
+                if (val.done == false) {
                     rows.push('<tr>' +
                         '<td>' + val.id + '</td>' +
                         '<td>' + val.description +
