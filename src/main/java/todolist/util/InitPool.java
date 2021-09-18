@@ -22,7 +22,6 @@ public class InitPool {
             new FileReader(fileName)
     )) {
         cfg.load(io);
-        //Class.forName(cfg.getProperty("hibernate.connection.driver_class"));
     } catch (Exception e) {
         logger.error(e.getMessage(), e);
     }
