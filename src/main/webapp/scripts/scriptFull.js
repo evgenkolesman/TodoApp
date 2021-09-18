@@ -7,7 +7,7 @@ $(document).ready(function () {
         validateAndAdd();
         setTimeout(function () {
             buildTable(showAll);
-        }, 100);
+        }, 1000);
     });
 
     $('#flexSwitchCheckDefault').click(function () {
