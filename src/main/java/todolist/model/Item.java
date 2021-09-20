@@ -28,7 +28,7 @@ public class Item {
     private User user;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    private List<Category> categories =new ArrayList<>();
+    private List<Category> categories = new ArrayList<>();
 
     public Item(String description, User user, List<Category> categories) {
         this.description = description;
