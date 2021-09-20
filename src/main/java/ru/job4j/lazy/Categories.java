@@ -7,7 +7,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "categories")
-public class Category {
+public class Categories {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,8 +18,8 @@ public class Category {
     @OneToMany(mappedBy = "category")//, fetch = FetchType.LAZY)
     private List<Task> tasks = new ArrayList<>();
 
-    public static Category of(String name) {
-        Category category = new Category();
+    public static Categories of(String name) {
+        Categories category = new Categories();
         category.name = name;
         return category;
     }
@@ -52,7 +52,7 @@ public class Category {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Category category = (Category) o;
+        Categories category = (Categories) o;
         return id == category.id;
     }
 

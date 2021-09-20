@@ -2,6 +2,7 @@ $(document).ready(function () {
     let showAll = false;
     buildTable(showAll);
     hello();
+    getCategory();
 
     $('#add').click(function () {
         validateAndAdd();
@@ -32,9 +33,24 @@ $(document).ready(function () {
     }
 });
 
+function getCategory() {
+    let categories = [];
+    categories.push('<option selected>Choose</option>');
+    $.getJSON("/TodoApp/categories"
+    ).done(function (response) {
+        $.each(response, function (key, val) {
+            categories.push('<option value="' + val.id + '">' + val.name + '</option>');
+        });
+        $('#category').html(categories);
+    }).fail(function (err) {
+        alert('Get category Failed!');
+        console.log("Get category error: " + err);
+    });
+}
+
 function validateAndAdd() {
-    if ($('#description').val() === '') {
-        alert('Enter ' + $('#description').attr('id'));
+    if ($('#description').val() == '' || $('#category').val() == 'Choose') {
+        $('#description').val() == '' ? alert('Enter description') : alert('Enter category');
         return false;
     }
     addTask();
@@ -42,9 +58,8 @@ function validateAndAdd() {
 }
 
 function addTask() {
-    $.post("/TodoApp/add", {
-        description: $('#description').val()
-    }).done(function (response) {
+    $.post("/TodoApp/add", $('form').serialize()
+    ).done(function (response) {
         console.log("Response Data: " + response);
     }).fail(function (err) {
         alert('Request Failed!');
@@ -68,8 +83,8 @@ function buildTable(showAll) {
                         '<input class="form-check-input" type="checkbox" value="" id="' + val.id + '">' +
                         '</div>' +
                         '</td>' +
-                        '<td>' + val.user.name + '</td>' +
-                        '</tr>');
+                        '<td>' + val.user.name + '</td></tr>');
+                        // '<td>' + print(val.categories) + '</td></tr>');
                 }
             } else {
                 if (val.done == false) {
@@ -84,8 +99,8 @@ function buildTable(showAll) {
                         '</div>' +
                         '</td>' +
                         '<td>' + val.user.name +
-                        '</td>' +
-                        '</tr>');
+                        '</td></tr>');
+                        // '<td>' + print(val.categories) + '</td></tr>');
                 } else {
                     rows.push('<tr>' +
                         '<td>' + val.id + '</td>' +
@@ -98,8 +113,8 @@ function buildTable(showAll) {
                         '</div>' +
                         '</td>' +
                         '<td>' + val.user.name +
-                        '</td>' +
-                        '</tr>');
+                        '</td></tr>');
+                        // '<td>' + print(val.categories) + '</td></tr>');
                 }
             }
         });
@@ -111,6 +126,12 @@ function buildTable(showAll) {
         alert('buildTable Failed!');
         console.log("Request Failed: " + err);
     });
+}
+
+function print(category) {
+    let result = [];
+    category.forEach(c => result.push(c.name))
+    return result;
 }
 
 function update(id, showAll) {

@@ -31,10 +31,9 @@
         <div class="card-header fw-light">
             <div class="btn-group">
                 <button id="hello" type="button" class="btn btn-dark dropdown-toggle fw-light btn-sm"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false">
+                        data-bs-toggle="dropdown" aria-expanded="false"></button>
                     Let`s go!
-                </button>
+
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item fw-light" href="/TodoApp/login.html">Logout</a></li>
                 </ul>
@@ -46,6 +45,16 @@
                     <label for="description" class="form-label">Description</label>
                     <textarea class="form-control" id="description" rows="3"></textarea>
                 </div>
+
+                <label class="form-label" for="category">Choose category</label>
+        <div class="input-group mb-3">
+            <select multiple name="category" size="3" class="form-select border-dark fw-light" id="category">
+                <option selected>Select</option>
+                <option value="1">Hard</option>
+                <option value="2">Normal</option>
+                <option value="3">Easy</option>
+            </select>
+        </div>
                 <button type="reset" id="add" class="btn btn-dark fw-light btn-sm">Add task</button>
             </form>
             <br>
@@ -62,10 +71,12 @@
                     <td>Created</td>
                     <td>Done</td>
                     <td>User</td>
+                    <td>Category</td>
                 </tr>
                 </thead>
                 <tbody id="table">
                 <tr>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>

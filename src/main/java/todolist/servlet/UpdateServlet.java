@@ -17,7 +17,7 @@ public class UpdateServlet extends HttpServlet {
         resp.setContentType("text/plain");
         resp.setCharacterEncoding("UTF-8");
         String id = req.getParameter("id");
-        Boolean done = !Boolean.valueOf(req.getParameter("done"));
+        Boolean done = !Boolean.parseBoolean(req.getParameter("done"));
         store.update(Integer.valueOf(id), done);
     }
 

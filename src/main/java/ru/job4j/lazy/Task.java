@@ -1,7 +1,6 @@
 package ru.job4j.lazy;
 
 import javax.persistence.*;
-import java.util.Locale;
 import java.util.Objects;
 
 @Entity
@@ -16,9 +15,9 @@ public class Task {
 
     @ManyToOne
     @JoinColumn(name="category_id")
-    private Category category;
+    private Categories category;
 
-    public static Task of(String description, Category category) {
+    public static Task of(String description, Categories category) {
         Task task = new Task();
         task.description = description;
         task.category = category;
@@ -41,11 +40,11 @@ public class Task {
         this.description = description;
     }
 
-    public Category getCategory() {
+    public Categories getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(Categories category) {
         this.category = category;
     }
 

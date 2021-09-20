@@ -11,14 +11,14 @@ import java.util.List;
 
 public class LazyRun {
     public static void main(String[] args) {
-        List<Category> list = new ArrayList<>();
+        List<Categories> list = new ArrayList<>();
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure().build();
         try {
             SessionFactory sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
             Session session = sf.openSession();
             list = session.createQuery(
-                    "select distinct c from Category c join fetch c.tasks"
+                    "select distinct c from Categories c join fetch c.tasks"
             ).list();
             // известный мне код все делаем в сессии
 //            session.beginTransaction();

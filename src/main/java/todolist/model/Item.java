@@ -2,6 +2,8 @@ package todolist.model;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -25,14 +27,26 @@ public class Item {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Item(String description, User user) {
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Category> categories =new ArrayList<>();
+
+    public Item(String description, User user, List<Category> categories) {
         this.description = description;
         this.created = new Timestamp(System.currentTimeMillis());
         this.done = false;
         this.user = user;
+        this.categories = categories;
     }
 
     public Item() {
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 
     public void setId(Integer id) {
