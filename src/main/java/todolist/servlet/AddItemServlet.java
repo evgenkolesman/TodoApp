@@ -25,8 +25,8 @@ public class AddItemServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         StoreCategory store = StoreCategory.getInstance();
         StoreData storeData = StoreData.getInstance();
-//        resp.setContentType("text/plain");
-//        resp.setCharacterEncoding("UTF-8");
+        resp.setContentType("text/plain");
+        resp.setCharacterEncoding("UTF-8");
         String description = req.getParameter("description");
         User user = (User) req.getSession().getAttribute("user");
         List<Category> list = new ArrayList<>();

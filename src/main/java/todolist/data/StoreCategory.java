@@ -48,7 +48,8 @@ public class StoreCategory {
 
     public List<Category> findAll() {
         return this.wrapper(session -> session.createQuery(
-                "SELECT DISTINCT c FROM Item c JOIN FETCH c.categories").list());
+//                "SELECT DISTINCT c FROM Item c JOIN FETCH c.categories").list());
+                "FROM Category").list());
     }
 
 

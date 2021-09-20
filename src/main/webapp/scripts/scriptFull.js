@@ -83,8 +83,8 @@ function buildTable(showAll) {
                         '<input class="form-check-input" type="checkbox" value="" id="' + val.id + '">' +
                         '</div>' +
                         '</td>' +
-                        '<td>' + val.user.name + '</td></tr>');
-                        // '<td>' + print(val.categories) + '</td></tr>');
+                        '<td>' + val.user.name + //'</td></tr>');
+                        '<td>' + print(val.categories) + '</td></tr>');
                 }
             } else {
                 if (val.done == false) {
@@ -98,9 +98,8 @@ function buildTable(showAll) {
                         '<input class="form-check-input" type="checkbox" value="" id="' + val.id + '">' +
                         '</div>' +
                         '</td>' +
-                        '<td>' + val.user.name +
-                        '</td></tr>');
-                        // '<td>' + print(val.categories) + '</td></tr>');
+                        '<td>' + val.user.name + //'</td></tr>');
+                        '<td>' + print(val.categories) + '</td></tr>');
                 } else {
                     rows.push('<tr>' +
                         '<td>' + val.id + '</td>' +
@@ -112,9 +111,8 @@ function buildTable(showAll) {
                         '<input class="form-check-input" type="checkbox" value="" id="' + val.id + '" checked>' +
                         '</div>' +
                         '</td>' +
-                        '<td>' + val.user.name +
-                        '</td></tr>');
-                        // '<td>' + print(val.categories) + '</td></tr>');
+                        '<td>' + val.user.name + //'</td></tr>');
+                        '<td>' + print(val.categories) + '</td></tr>');
                 }
             }
         });
