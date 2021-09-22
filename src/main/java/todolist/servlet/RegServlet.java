@@ -34,7 +34,9 @@ public class RegServlet extends HttpServlet {
                 store.add(user);
             } catch (SQLException e) {
                 logger.error(e.getMessage(), e);
+                req.setAttribute("505", "BAD REQUEST REGISTRATION");
             }
+
             req.getRequestDispatcher("login.html").forward(req, resp);
         } else {
             throw new ServletException("Wrong email or password!");

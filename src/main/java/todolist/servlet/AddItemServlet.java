@@ -38,6 +38,7 @@ public class AddItemServlet extends HttpServlet {
             storeData.add(item);
         } catch (SQLException e) {
             logger.error(e.getMessage(), e);
+            req.setAttribute("505", "BAD REQUEST ADD");
         }
     }
 }

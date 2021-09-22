@@ -14,7 +14,6 @@ public class InitPool {
     public InitPool() {
     }
 
-
     public static void makePool(String fileName) {
     Properties cfg = new Properties();
         try (
