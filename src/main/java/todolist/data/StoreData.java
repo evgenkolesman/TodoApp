@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
 import java.util.function.Function;
+import java.util.stream.IntStream;
 
 public class StoreData {
 
@@ -67,4 +68,8 @@ public class StoreData {
                 setParameter("id", id).
                 uniqueResult());
     }
+
+//    public static void main(String[] args) {
+//        IntStream.rangeClosed(6,20).forEach(s-> new StoreData().delete(s));
+//    }
 }
