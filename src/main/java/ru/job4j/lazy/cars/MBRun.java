@@ -25,19 +25,6 @@ public class MBRun {
             list = session.createQuery(
                     "select distinct c from Brand c join fetch c.models"
             ).list();
-/**
- * //join fetch метод выше метод join fetch
- *             // другой способ
- *             известный мне код все делаем в сессии
- * //            session.beginTransaction();
- * //            list = session.createQuery("from Brand").list();
- * //            for (Brand brand : list) {
- * //                for (ModelCar modelCar : brand.getModels()) {
- * //                    System.out.println(modelCar);
- * //                }
- * //            }
- * //            session.getTransaction().commit();
- */
 
             if (session.getTransaction().getStatus().equals(TransactionStatus.ACTIVE)) {
                 session.getTransaction().commit();
@@ -53,3 +40,18 @@ public class MBRun {
         }
     }
 }
+
+
+/**
+ * join fetch метод выше метод join fetch
+ *  другой способ
+ *             известный мне код все делаем в сессии
+ *            session.beginTransaction();
+ *          list = session.createQuery("from Brand").list();
+ *          for (Brand brand : list) {
+ *           for (ModelCar modelCar : brand.getModels()) {
+ *                   System.out.println(modelCar);
+ *               }
+ *            }
+ *           session.getTransaction().commit();
+ */
