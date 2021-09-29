@@ -11,7 +11,7 @@ public class InitPool {
     private static final BasicDataSource pool = new BasicDataSource();
     private static Logger logger = Logger.getLogger(InitSessionFactory.class);
 
-    public InitPool() {
+    private InitPool() {
     }
 
     public static void makePool(String fileName) {
