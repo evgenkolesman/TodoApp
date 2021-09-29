@@ -12,7 +12,6 @@ import java.util.function.Function;
 public class StoreCategory {
 
     private StoreCategory() {
-//        "/home/evgenios/IdeaProjects/TodoApp/src/main/resources/hibernate.cfg.xml"
         InitPool.makePool("/home/evgenios/IdeaProjects/TodoApp/src/main/resources/hibernate.cfg.xml");
     }
 
@@ -46,9 +45,11 @@ public class StoreCategory {
                         executeUpdate());
     }
 
+    /**другой способ
+     *"SELECT DISTINCT c FROM Item c JOIN FETCH c.categories").list());
+     */
     public List<Category> findAll() {
         return this.wrapper(session -> session.createQuery(
-//                "SELECT DISTINCT c FROM Item c JOIN FETCH c.categories").list());
                 "FROM Category").list());
     }
 

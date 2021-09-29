@@ -21,19 +21,23 @@ public class MBRun {
         try {
             SessionFactory sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
             Session session = sf.openSession();
-            //join fetch метод
+
             list = session.createQuery(
                     "select distinct c from Brand c join fetch c.models"
             ).list();
-            // известный мне код все делаем в сессии
-//            session.beginTransaction();
-//            list = session.createQuery("from Brand").list();
-//            for (Brand brand : list) {
-//                for (ModelCar modelCar : brand.getModels()) {
-//                    System.out.println(modelCar);
-//                }
-//            }
-//            session.getTransaction().commit();
+/**
+ * //join fetch метод выше метод join fetch
+ *             // другой способ
+ *             известный мне код все делаем в сессии
+ * //            session.beginTransaction();
+ * //            list = session.createQuery("from Brand").list();
+ * //            for (Brand brand : list) {
+ * //                for (ModelCar modelCar : brand.getModels()) {
+ * //                    System.out.println(modelCar);
+ * //                }
+ * //            }
+ * //            session.getTransaction().commit();
+ */
 
             if (session.getTransaction().getStatus().equals(TransactionStatus.ACTIVE)) {
                 session.getTransaction().commit();

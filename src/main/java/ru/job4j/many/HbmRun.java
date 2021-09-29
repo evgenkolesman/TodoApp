@@ -23,11 +23,6 @@ public class HbmRun {
             Session session = sf.openSession();
             session.beginTransaction();
 
-//            User1 one = User1.of("Petr");
-//            User1 two = User1.of("Andrei");
-//
-//            Role admin = Role.of("ADMIN");
-
             Models one = Models.of("Audi");
             Models two = Models.of("LADA");
             Models three = Models.of("Renault");
@@ -40,10 +35,6 @@ public class HbmRun {
             }
 
             Car car = Car.of("CAR");
-            // выше стрим массива нужно разобарться в применении mapToObj
-//            for (int i =1; i < list.size(); i++) {
-//                car.addModels(session.load(Models.class, i));
-//            }
 
             IntStream.range(1, list.size() + 1).mapToObj(i -> session.load(Models.class, i)).forEach(car::addModels);
             session.save(car);

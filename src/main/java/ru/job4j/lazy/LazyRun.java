@@ -20,14 +20,6 @@ public class LazyRun {
             list = session.createQuery(
                     "select distinct c from Categories c join fetch c.tasks"
             ).list();
-            // известный мне код все делаем в сессии
-//            session.beginTransaction();
-//            list = session.createQuery("from Category").list();
-//            for (Category category : list) {
-//                for (Task task : category.getTasks()) {
-//                    System.out.println(task);
-//                }
-//            }
             session.getTransaction().commit();
             session.close();
         }  catch (Exception e) {

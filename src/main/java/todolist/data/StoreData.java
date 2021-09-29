@@ -1,26 +1,18 @@
 package todolist.data;
 
 import todolist.model.Item;
-import org.apache.commons.dbcp2.BasicDataSource;
-import org.apache.log4j.Logger;
 import org.hibernate.Session;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import todolist.util.InitPool;
 import todolist.util.InitSessionFactory;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Properties;
 import java.util.function.Function;
-import java.util.stream.IntStream;
 
 public class StoreData {
 
     private StoreData() {
-//        "/home/evgenios/IdeaProjects/TodoApp/src/main/resources/hibernate.cfg.xml"
-        InitPool.makePool( "/home/evgenios/IdeaProjects/TodoApp/src/main/resources/hibernate.cfg.xml");
+        InitPool.makePool("/home/evgenios/IdeaProjects/TodoApp/src/main/resources/hibernate.cfg.xml");
     }
 
     private static class Lazy {
@@ -68,8 +60,11 @@ public class StoreData {
                 setParameter("id", id).
                 uniqueResult());
     }
-
-//    public static void main(String[] args) {
-//        IntStream.rangeClosed(6,20).forEach(s-> new StoreData().delete(s));
-//    }
 }
+
+/**
+ * Для проверки можно использовать
+ * public static void main(String[] args) {
+ * IntStream.rangeClosed(6,20).forEach(s-> new StoreData().delete(s));
+ */
+
