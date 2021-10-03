@@ -41,9 +41,6 @@ public class StoreData {
 
     public void update(Integer id) {
         this.wrapper(session -> {
-//                session.createQuery("UPDATE Item SET done = :done WHERE id = :id").
-//                        setParameter("done", !done).
-//                        setParameter("id", id).executeUpdate());
                 Item item = session.get(Item.class, id);
         item.setDone(!item.getDone());
         return item;});
