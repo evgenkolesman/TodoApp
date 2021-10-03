@@ -20,7 +20,7 @@ public class StoreData {
 
     private StoreData() {
 //        "/home/evgenios/IdeaProjects/TodoApp/src/main/resources/hibernate.cfg.xml"
-        InitPool.makePool( "/home/evgenios/IdeaProjects/TodoApp/src/main/resources/hibernate.cfg.xml");
+        InitPool.getInstance().makePool( "/home/evgenios/IdeaProjects/TodoApp/src/main/resources/hibernate.cfg.xml");
     }
 
     private static class Lazy {
@@ -39,11 +39,14 @@ public class StoreData {
         this.wrapper(session -> session.save(item));
     }
 
-    public void update(Integer id, Boolean done) {
-        this.wrapper(session ->
-                session.createQuery("UPDATE Item SET done = :done WHERE id = :id").
-                        setParameter("done", done).
-                        setParameter("id", id).executeUpdate());
+    public void update(Integer id) {
+        this.wrapper(session -> {
+//                session.createQuery("UPDATE Item SET done = :done WHERE id = :id").
+//                        setParameter("done", !done).
+//                        setParameter("id", id).executeUpdate());
+                Item item = session.get(Item.class, id);
+        item.setDone(!item.getDone());
+        return item;});
     }
 
     public void delete(Integer id) {

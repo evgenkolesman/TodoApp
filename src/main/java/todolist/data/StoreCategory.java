@@ -13,7 +13,7 @@ public class StoreCategory {
 
     private StoreCategory() {
 //        "/home/evgenios/IdeaProjects/TodoApp/src/main/resources/hibernate.cfg.xml"
-        InitPool.makePool("/home/evgenios/IdeaProjects/TodoApp/src/main/resources/hibernate.cfg.xml");
+        InitPool.getInstance().makePool("/home/evgenios/IdeaProjects/TodoApp/src/main/resources/hibernate.cfg.xml");
     }
 
     private static class Lazy {

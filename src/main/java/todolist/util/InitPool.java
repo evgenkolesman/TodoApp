@@ -2,6 +2,7 @@ package todolist.util;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.log4j.Logger;
+import todolist.data.StoreData;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -11,10 +12,18 @@ public class InitPool {
     private static final BasicDataSource pool = new BasicDataSource();
     private static Logger logger = Logger.getLogger(InitSessionFactory.class);
 
-    public InitPool() {
+    private InitPool() {
     }
 
-    public static void makePool(String fileName) {
+    private static class Lazy {
+        static final InitPool INSTANCE = new InitPool();
+    }
+
+    public static InitPool getInstance() {
+        return Lazy.INSTANCE;
+    }
+
+    public void makePool(String fileName) {
     Properties cfg = new Properties();
         try (
     BufferedReader io = new BufferedReader(

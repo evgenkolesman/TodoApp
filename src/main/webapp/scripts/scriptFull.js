@@ -16,10 +16,10 @@ $(document).ready(function () {
         buildTable(showAll);
     });
 
-    $('#checkBut').click(function () {
-        showAll = !showAll;
-        buildTable(showAll);
-    })
+    // $('#checkBut').click(function () {
+    //     showAll = !showAll;
+    //     buildTable(showAll);
+    // })
 
     function hello() {
         $.getJSON("/TodoApp/greet.do"
@@ -71,7 +71,7 @@ function buildTable(showAll) {
     $.getJSON("/TodoApp/index").done(function (response) {
         let rows = [];
         $.each(response, function (key, val) {
-            let checkBut = val.done;
+            // let checkBut = val.done;
             if (showAll === false) {
                 if (val.done == false) {
                     rows.push('<tr>' +
@@ -136,7 +136,14 @@ function update(id, showAll) {
     $.post("/TodoApp/update", {
         id: id
     }).done(function (response) {
+        let value = showAll;
+        alert(typeof value); // boolean
+
+        value = String(value); // теперь value это строка "true"
+        alert(typeof value);
+
         buildTable(showAll);
+
         console.log("Response Data: " + response);
     }).fail(function (err) {
         alert('Request Failed!');

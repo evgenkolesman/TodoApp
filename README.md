@@ -8,5 +8,5 @@ Application use:
 - HTML
 - Ajax
 - Java (backend)
-- JavaScript(frontend)
+- JavaScript with AJAX(frontend)
 - JavaDoc (will be added after complete)

@@ -20,7 +20,7 @@ public class StoreDataTest {
         StoreData sd = StoreData.getInstance();
         Item item = new Item("desc", new User(), new ArrayList<Category>());
         sd.add(item);
-        sd.update(item.getId(), true);
+        sd.update(item.getId());
         assertThat(sd.findById(item.getId()).getDone(), is(true));
         sd.delete(item.getId());
     }
