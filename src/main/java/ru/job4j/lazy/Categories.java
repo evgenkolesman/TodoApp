@@ -15,7 +15,7 @@ public class Categories {
 
     private String name;
 
-    @OneToMany(mappedBy = "category")//, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "category")
     private List<Task> tasks = new ArrayList<>();
 
     public static Categories of(String name) {
