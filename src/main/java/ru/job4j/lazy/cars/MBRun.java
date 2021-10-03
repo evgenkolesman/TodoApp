@@ -21,21 +21,18 @@ public class MBRun {
         try {
             SessionFactory sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
             Session session = sf.openSession();
-
+            session.beginTransaction();
             list = session.createQuery(
                     "select distinct c from Brand c join fetch c.models"
             ).list();
-
-            if (session.getTransaction().getStatus().equals(TransactionStatus.ACTIVE)) {
-                session.getTransaction().commit();
-            }
+            session.getTransaction().commit();
             session.close();
-        }  catch (Exception e) {
+        } catch (Exception e) {
             logger.error(e.getMessage(), e);
         } finally {
             StandardServiceRegistryBuilder.destroy(registry);
         }
-        for (ModelCar modelCar: list.get(1).getModels()) {
+        for (ModelCar modelCar : list.get(1).getModels()) {
             System.out.println(modelCar);
         }
     }
@@ -44,14 +41,14 @@ public class MBRun {
 
 /**
  * join fetch метод выше метод join fetch
- *  другой способ
- *             известный мне код все делаем в сессии
- *            session.beginTransaction();
- *          list = session.createQuery("from Brand").list();
- *          for (Brand brand : list) {
- *           for (ModelCar modelCar : brand.getModels()) {
- *                   System.out.println(modelCar);
- *               }
- *            }
- *           session.getTransaction().commit();
+ * другой способ
+ * известный мне код все делаем в сессии
+ * session.beginTransaction();
+ * list = session.createQuery("from Brand").list();
+ * for (Brand brand : list) {
+ * for (ModelCar modelCar : brand.getModels()) {
+ * System.out.println(modelCar);
+ * }
+ * }
+ * session.getTransaction().commit();
  */
