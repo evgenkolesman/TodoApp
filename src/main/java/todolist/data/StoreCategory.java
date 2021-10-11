@@ -12,7 +12,7 @@ import java.util.function.Function;
 public class StoreCategory {
 
     private StoreCategory() {
-        InitPool.getInstance().makePool("/home/evgenios/IdeaProjects/TodoApp/src/main/resources/hibernate.cfg.xml");
+        InitPool.getInstance("/home/evgenios/IdeaProjects/TodoApp/src/main/resources/hibernate.cfg.xml");
     }
 
     private static class Lazy {

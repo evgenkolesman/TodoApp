@@ -19,8 +19,7 @@ import java.util.stream.IntStream;
 public class StoreData {
 
     private StoreData() {
-//        "/home/evgenios/IdeaProjects/TodoApp/src/main/resources/hibernate.cfg.xml"
-        InitPool.getInstance().makePool( "/home/evgenios/IdeaProjects/TodoApp/src/main/resources/hibernate.cfg.xml");
+        InitPool.getInstance("/home/evgenios/IdeaProjects/TodoApp/src/main/resources/hibernate.cfg.xml");
     }
 
     private static class Lazy {
@@ -41,9 +40,10 @@ public class StoreData {
 
     public void update(Integer id) {
         this.wrapper(session -> {
-                Item item = session.get(Item.class, id);
-        item.setDone(!item.getDone());
-        return item;});
+            Item item = session.get(Item.class, id);
+            item.setDone(!item.getDone());
+            return item;
+        });
     }
 
     public void delete(Integer id) {
@@ -68,8 +68,4 @@ public class StoreData {
                 setParameter("id", id).
                 uniqueResult());
     }
-
-//    public static void main(String[] args) {
-//        IntStream.rangeClosed(6,20).forEach(s-> new StoreData().delete(s));
-//    }
 }
