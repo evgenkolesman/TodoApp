@@ -11,4 +11,5 @@ Application use:
 - Java (backend)
 - JavaScript with AJAX(frontend)
 - JavaDoc (will be added after complete)
-2. 
+2. Some screenshot
+3. To start we clone it from github
